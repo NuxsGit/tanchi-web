@@ -1,0 +1,47 @@
+{
+  "name": "tanchi-web",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "NODE_OPTIONS=--max-old-space-size=1536 nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "dev:devtools": "NUXT_DEVTOOLS=true NODE_OPTIONS=--max-old-space-size=1536 nuxt dev"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^4.10.0",
+    "@tiptap/core": "^3.30.2",
+    "@tiptap/extension-bubble-menu": "^3.30.2",
+    "@tiptap/extension-code": "^3.30.2",
+    "@tiptap/extension-collaboration": "^3.30.2",
+    "@tiptap/extension-drag-handle": "^3.30.2",
+    "@tiptap/extension-drag-handle-vue-3": "^3.30.2",
+    "@tiptap/extension-floating-menu": "^3.30.2",
+    "@tiptap/extension-horizontal-rule": "^3.30.2",
+    "@tiptap/extension-image": "^3.30.2",
+    "@tiptap/extension-mention": "^3.30.2",
+    "@tiptap/extension-node-range": "^3.30.2",
+    "@tiptap/extension-placeholder": "^3.30.2",
+    "@tiptap/markdown": "^3.30.2",
+    "@tiptap/pm": "^3.30.2",
+    "@tiptap/starter-kit": "^3.30.2",
+    "@tiptap/suggestion": "^3.30.2",
+    "@tiptap/vue-3": "^3.30.2",
+    "better-sqlite3": "^13.0.3",
+    "nuxt": "^4.5.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0"
+  },
+  "allowScripts": {
+    "vue-demi@0.14.10": true,
+    "esbuild@0.28.2": true,
+    "esbuild@0.27.7": true
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.124"
+  }
+}

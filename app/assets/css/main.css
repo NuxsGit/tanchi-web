@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*
+ * Jetons sémantiques : les utilitaires Tailwind (`bg-canvas`, `text-ink`, …)
+ * pointent vers des variables réassignées par chaque thème plus bas.
+ */
+@theme static {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-canvas: var(--t-canvas);
+  --color-surface: var(--t-surface);
+  --color-raised: var(--t-raised);
+  --color-line: var(--t-line);
+  --color-line-strong: var(--t-line-strong);
+  --color-ink: var(--t-ink);
+  --color-ink-muted: var(--t-ink-muted);
+  --color-ink-dim: var(--t-ink-dim);
+  --color-accent: var(--t-accent);
+  --color-accent-fill: var(--t-accent-fill);
+  --color-accent-soft: var(--t-accent-soft);
+  --color-accent-ink: var(--t-accent-ink);
+}
+
+:root {
+  --ui-radius: 0.5rem;
+}
+
+/* ------------------------------------------------------- 1. Vert & Noir */
+[data-theme='vert-noir'] {
+  --t-canvas: #050705;
+  --t-surface: #0c110c;
+  --t-raised: #121a13;
+  --t-line: #1c271e;
+  --t-line-strong: #2b3a2d;
+  --t-ink: #e8ffec;
+  --t-ink-muted: #7fa887;
+  --t-ink-dim: #517059;
+  --t-accent: #22c55e;
+  --t-accent-fill: #22c55e;
+  --t-accent-soft: #16351f;
+  --t-accent-ink: #04140a;
+  --ui-radius: 0.375rem;
+}
+
+/* ------------------------------------------------------ 2. Blanc & Vert */
+[data-theme='blanc-vert'] {
+  --t-canvas: #fbfdfb;
+  --t-surface: #f1f7f2;
+  --t-raised: #e6efe8;
+  --t-line: #d7e5da;
+  --t-line-strong: #b6ccbb;
+  --t-ink: #0f1f14;
+  --t-ink-muted: #4a6553;
+  --t-ink-dim: #7a9184;
+  --t-accent: #15803d;
+  --t-accent-fill: #16a34a;
+  --t-accent-soft: #dcf0e2;
+  --t-accent-ink: #ffffff;
+  --ui-radius: 0.625rem;
+}
+
+/* ------------------------- 3. Nothing OS 4 — Jaune & Blanc (clair) */
+[data-theme='nothing-jaune'] {
+  --t-canvas: #ffffff;
+  --t-surface: #f4f4f4;
+  --t-raised: #ebebeb;
+  --t-line: #dedede;
+  --t-line-strong: #bcbcbc;
+  --t-ink: #000000;
+  --t-ink-muted: #545454;
+  --t-ink-dim: #8a8a8a;
+  /* Jaune assombri pour le texte et les icônes, jaune signal pour les aplats. */
+  --t-accent: #8a7500;
+  --t-accent-fill: #ffe600;
+  --t-accent-soft: #fff8b8;
+  --t-accent-ink: #000000;
+  --ui-radius: 0.125rem;
+}
+
+/* ------------------- 4. Nothing première génération — Rouge & Noir */
+[data-theme='nothing-rouge'] {
+  --t-canvas: #000000;
+  --t-surface: #0d0d0d;
+  --t-raised: #161616;
+  --t-line: #232323;
+  --t-line-strong: #343434;
+  --t-ink: #ffffff;
+  --t-ink-muted: #a3a3a3;
+  --t-ink-dim: #6b6b6b;
+  --t-accent: #ef3b42;
+  --t-accent-fill: #d71921;
+  --t-accent-soft: #2a0b0d;
+  --t-accent-ink: #ffffff;
+  --ui-radius: 0.125rem;
+}
+
+/*
+ * Raccordement des jetons Nuxt UI : les composants natifs (UInput, UCard,
+ * UTable, UModal…) suivent automatiquement le thème actif.
+ */
+[data-theme] {
+  --ui-primary: var(--t-accent-fill);
+  --ui-secondary: var(--t-accent-fill);
+
+  --ui-bg: var(--t-canvas);
+  --ui-bg-muted: var(--t-surface);
+  --ui-bg-elevated: var(--t-raised);
+  --ui-bg-accented: var(--t-line);
+  --ui-bg-inverted: var(--t-ink);
+
+  --ui-border: var(--t-line);
+  --ui-border-muted: var(--t-line);
+  --ui-border-accented: var(--t-line-strong);
+  --ui-border-inverted: var(--t-ink);
+
+  --ui-text-dimmed: var(--t-ink-dim);
+  --ui-text-muted: var(--t-ink-muted);
+  --ui-text-toned: var(--t-ink-muted);
+  --ui-text: var(--t-ink);
+  --ui-text-highlighted: var(--t-ink);
+  --ui-text-inverted: var(--t-canvas);
+}
+
+/*
+ * Le jaune signal ne supporte pas de texte blanc : sur ce thème, tout ce qui
+ * est posé sur un aplat de couleur passe en noir — c'est aussi le rendu
+ * d'origine de Nothing OS 4.
+ */
+[data-theme='nothing-jaune'] {
+  --ui-bg-inverted: var(--t-accent-fill);
+  --ui-text-inverted: #000000;
+}
+
+/* Les deux thèmes « Nothing » adoptent une typographie plus mécanique. */
+[data-theme^='nothing'] {
+  --font-sans: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+[data-theme^='nothing'] h1,
+[data-theme^='nothing'] h2 {
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+html {
+  background-color: var(--t-canvas);
+  color: var(--t-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* ------------------------------------------------- Transitions de page */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: none;
+  }
+}
