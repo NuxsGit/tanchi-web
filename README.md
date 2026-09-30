@@ -46,6 +46,8 @@ Démarrez l'application en mode développement :
 
 ```bash
 npm run dev
+ou
+set TANCHI_DB=./data/tanchi.db && npm run dev
 ```
 
 > 💡 **Initialisation de la DB :** Au démarrage, Tanchi créera automatiquement le dossier `data/` ainsi que le fichier `data/tanchi.db` s'ils n'existent pas encore. Les logs de la console afficheront le chemin exact du fichier initialisé.
